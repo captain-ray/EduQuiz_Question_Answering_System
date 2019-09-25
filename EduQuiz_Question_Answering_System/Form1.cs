@@ -12,6 +12,9 @@ namespace EduQuiz_Question_Answering_System
 {
     public partial class form_Index : Form
     {
+        private string jsonFilePath { get; set; }
+        private string indexPath { get; set; }
+
         public form_Index()
         {
             InitializeComponent();
@@ -21,13 +24,19 @@ namespace EduQuiz_Question_Answering_System
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = true;
-            fileDialog.Title = "请选择文件";
-            fileDialog.Filter = "所有文件(*.txt)|*.txt";
+            // fileDialog.Title = "请选择文件";
+            fileDialog.Title="Please choose file";
+            // fileDialog.Filter = "所有文件(*.txt)|*.txt";
+            fileDialog.Filter = "All files (*.json)|*.json";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string file = fileDialog.FileName;
-                MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show("You have chosen:" + file, "Prompt for file choice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtbox_FilePath.Text = file;
+
+                
+                jsonFilePath = file;
             }
         }
 
@@ -44,9 +53,23 @@ namespace EduQuiz_Question_Answering_System
                 if (folderName != "")
                 {
                     txtbox_FolderPath.Text = folderName;
-
                 }
+
+                indexPath=folderName;
             }
+        }
+
+        private void btn_CreateIndex_Click(object sender, EventArgs e)
+        {
+            // List<Item> collection = Utils.getCollection(jsonFilePath);
+
+            LuceneInteractive myLuceneApp = new LuceneInteractive(jsonFilePath,@"Z:\Desktop\QUT\IFN647\Project\index");
+            string resultsStr=myLuceneApp.DisplayResults();
+
+            ResultTest.Text=resultsStr;
+
+
+
         }
     }
 }

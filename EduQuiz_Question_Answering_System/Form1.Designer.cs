@@ -35,6 +35,7 @@
             this.txtbox_FolderPath = new System.Windows.Forms.TextBox();
             this.btn_OpenLocalFolder = new System.Windows.Forms.Button();
             this.btn_CreateIndex = new System.Windows.Forms.Button();
+            this.ResultTest = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_CollectionPath
@@ -101,12 +102,23 @@
             this.btn_CreateIndex.TabIndex = 6;
             this.btn_CreateIndex.Text = "Create Index";
             this.btn_CreateIndex.UseVisualStyleBackColor = true;
+            this.btn_CreateIndex.Click += new System.EventHandler(this.btn_CreateIndex_Click);
+            // 
+            // ResultTest
+            // 
+            this.ResultTest.AutoSize = true;
+            this.ResultTest.Location = new System.Drawing.Point(29, 668);
+            this.ResultTest.Name = "ResultTest";
+            this.ResultTest.Size = new System.Drawing.Size(142, 24);
+            this.ResultTest.TabIndex = 7;
+            this.ResultTest.Text = "Result Test";
             // 
             // form_Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 670);
+            this.ClientSize = new System.Drawing.Size(1082, 1268);
+            this.Controls.Add(this.ResultTest);
             this.Controls.Add(this.btn_CreateIndex);
             this.Controls.Add(this.btn_OpenLocalFolder);
             this.Controls.Add(this.txtbox_FolderPath);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.TextBox txtbox_FolderPath;
         private System.Windows.Forms.Button btn_OpenLocalFolder;
         private System.Windows.Forms.Button btn_CreateIndex;
+        private System.Windows.Forms.Label ResultTest;
     }
 }
 
