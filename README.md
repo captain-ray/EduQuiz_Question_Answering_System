@@ -77,6 +77,8 @@ It is able to open the JSON file based on user browsing, and specify a indexing 
 
 ###### 3) simple searching page implementation
 
+
+
 ![Progress2_1](images_implementation/Progress2_1.png)
 
 
