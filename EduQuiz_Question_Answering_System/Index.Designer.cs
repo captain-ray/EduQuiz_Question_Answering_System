@@ -35,7 +35,8 @@
             this.txtbox_FolderPath = new System.Windows.Forms.TextBox();
             this.btn_OpenLocalFolder = new System.Windows.Forms.Button();
             this.btn_CreateIndex = new System.Windows.Forms.Button();
-            this.ResultTest = new System.Windows.Forms.Label();
+            this.lbl_IndexTime = new System.Windows.Forms.Label();
+            this.btn_GoToSearchPage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_CollectionPath
@@ -104,21 +105,32 @@
             this.btn_CreateIndex.UseVisualStyleBackColor = true;
             this.btn_CreateIndex.Click += new System.EventHandler(this.btn_CreateIndex_Click);
             // 
-            // ResultTest
+            // lbl_IndexTime
             // 
-            this.ResultTest.AutoSize = true;
-            this.ResultTest.Location = new System.Drawing.Point(29, 668);
-            this.ResultTest.Name = "ResultTest";
-            this.ResultTest.Size = new System.Drawing.Size(142, 24);
-            this.ResultTest.TabIndex = 7;
-            this.ResultTest.Text = "Result Test";
+            this.lbl_IndexTime.AutoSize = true;
+            this.lbl_IndexTime.Location = new System.Drawing.Point(329, 508);
+            this.lbl_IndexTime.Name = "lbl_IndexTime";
+            this.lbl_IndexTime.Size = new System.Drawing.Size(142, 24);
+            this.lbl_IndexTime.TabIndex = 7;
+            this.lbl_IndexTime.Text = "Index Time:";
+            // 
+            // btn_GoToSearchPage
+            // 
+            this.btn_GoToSearchPage.Location = new System.Drawing.Point(471, 554);
+            this.btn_GoToSearchPage.Name = "btn_GoToSearchPage";
+            this.btn_GoToSearchPage.Size = new System.Drawing.Size(189, 51);
+            this.btn_GoToSearchPage.TabIndex = 8;
+            this.btn_GoToSearchPage.Text = "Go Searching";
+            this.btn_GoToSearchPage.UseVisualStyleBackColor = true;
+            this.btn_GoToSearchPage.Click += new System.EventHandler(this.btn_GoToSearchPage_Click);
             // 
             // form_Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 1268);
-            this.Controls.Add(this.ResultTest);
+            this.Controls.Add(this.btn_GoToSearchPage);
+            this.Controls.Add(this.lbl_IndexTime);
             this.Controls.Add(this.btn_CreateIndex);
             this.Controls.Add(this.btn_OpenLocalFolder);
             this.Controls.Add(this.txtbox_FolderPath);
@@ -127,7 +139,7 @@
             this.Controls.Add(this.lbl_IndexPath);
             this.Controls.Add(this.lbl_CollectionPath);
             this.Name = "form_Index";
-            this.Text = "EduQuiz Question Answering System";
+            this.Text = "EduQuiz Question Answering System---Index";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,7 +154,8 @@
         private System.Windows.Forms.TextBox txtbox_FolderPath;
         private System.Windows.Forms.Button btn_OpenLocalFolder;
         private System.Windows.Forms.Button btn_CreateIndex;
-        private System.Windows.Forms.Label ResultTest;
+        private System.Windows.Forms.Label lbl_IndexTime;
+        private System.Windows.Forms.Button btn_GoToSearchPage;
     }
 }
 

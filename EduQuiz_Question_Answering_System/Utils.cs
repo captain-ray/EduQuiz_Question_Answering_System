@@ -28,24 +28,5 @@ namespace EduQuiz_Question_Answering_System
             return collection;
         }
 
-
-        // //parse Json files and then get the 'passage_text' and 'url' from each passage
-        // public static Dictionary<string, string> getAllDocuments()
-        // {
-        //     Dictionary<string, string> allDocuments = new Dictionary<string, string>();
-
-
-        //     // List<Item> collection = JsonConvert.DeserializeObject<List<Item>>(File.ReadAllText(jsonFilePath)); //using this one will cause getting out of memory, because it reads all the text at a time
-
-        //     using (StreamReader file = File.OpenText(jsonFilePath)) //using StreamReader prevents it from getting out of memory
-        //     {
-        //         JsonSerializer serializer = new JsonSerializer();
-        //         List<Item> collection = (List<Item>)serializer.Deserialize(file, typeof(List<Item>)); //parse the string obtained from .json file to the list of 'Item' objects
-        //     }
-
-
-        //     WriteLine("hah");
-        //     return allDocuments;
-        // }
     }
 }

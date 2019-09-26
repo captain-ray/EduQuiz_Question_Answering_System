@@ -2,7 +2,7 @@
 
 #### FYI:
 
-![data-collection example](images_FYI/data-collection example.png)
+![data-collection example](images_FYI/data-collection_example.png)
 
 ------
 
@@ -13,6 +13,8 @@
 1. Document(2 fields)? 1st field-text , 2nd filed-url? // **one field, url+text!**
 2. Is it user allowed to choose any indexing strategy?
 3. Where should we use the 'query', 'answer'?
+4. Does the baseline system need to "pre-process" the query?
+5. How to implement the feature of "highlighting set of matching passage text for the query"?
 
 ------
 
@@ -27,9 +29,9 @@
 
 
 
-1. #### Task 1 — **Index**:
+#### 1. Task 1 — **Index**:
 
-   **mockup: Indexing Strategy** is not settled down, just put it there for now
+**mockup: Indexing Strategy** is not settled down, just put it there for now
 
 ![Task1-Index](images_mockups/Task1-Index.png)
 
@@ -54,4 +56,32 @@
 It is able to open the JSON file based on user browsing, and specify a indexing folder based on user browsing. Put a hard coded query of 'RBA' to search for the results, the results are just simply displayed at the bottom of the Indexing Page.
 
 ------
+
+
+
+
+
+#### 2. Task2 — Search:
+
+**mockup:**
+
+![Task2-Search](images_mockups/Task2-Search.png)
+
+------
+
+#### Progress 2: 
+
+###### 1)display index time  
+
+###### 2) add button to redirect to searching page  
+
+###### 3) simple searching page implementation
+
+![Progress2_1](images_implementation/Progress2_1.png)
+
+
+
+
+
+![Progress2_2](images_implementation/Progress2_2.png)
 

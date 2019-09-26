@@ -14,10 +14,11 @@ namespace EduQuiz_Question_Answering_System
     {
         private string jsonFilePath { get; set; }
         private string indexPath { get; set; }
-
+        public static LuceneInteractive myLuceneApp;
         public form_Index()
         {
             InitializeComponent();
+            myLuceneApp = null;
         }
 
         private void btn_OpenLocalFile_Click(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace EduQuiz_Question_Answering_System
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = true;
             // fileDialog.Title = "请选择文件";
-            fileDialog.Title="Please choose file";
+            fileDialog.Title = "Please choose file";
             // fileDialog.Filter = "所有文件(*.txt)|*.txt";
             fileDialog.Filter = "All files (*.json)|*.json";
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -35,7 +36,7 @@ namespace EduQuiz_Question_Answering_System
                 // MessageBox.Show("You have chosen:" + file, "Prompt for file choice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtbox_FilePath.Text = file;
 
-                
+
                 jsonFilePath = file;
             }
         }
@@ -55,21 +56,27 @@ namespace EduQuiz_Question_Answering_System
                     txtbox_FolderPath.Text = folderName;
                 }
 
-                indexPath=folderName;
+                indexPath = folderName;
             }
         }
 
         private void btn_CreateIndex_Click(object sender, EventArgs e)
         {
-            // List<Item> collection = Utils.getCollection(jsonFilePath);
 
-            LuceneInteractive myLuceneApp = new LuceneInteractive(jsonFilePath,@"Z:\Desktop\QUT\IFN647\Project\index");
-            string resultsStr=myLuceneApp.DisplayResults();
+            DateTime startIndex = System.DateTime.Now;
+            myLuceneApp = new LuceneInteractive(jsonFilePath, @"Z:\Desktop\647_Searching_Engine_Index");
+            DateTime endIndex = System.DateTime.Now;
 
-            ResultTest.Text=resultsStr;
+            string indexTime = "Index Time:" + (endIndex - startIndex);
+            lbl_IndexTime.Text = indexTime;
 
+        }
 
-
+        private void btn_GoToSearchPage_Click(object sender, EventArgs e)
+        {
+            form_Search searchForm = new form_Search(myLuceneApp);
+            Hide();
+            searchForm.Show();
         }
     }
 }

@@ -13,7 +13,7 @@ using static System.Console;
 
 namespace EduQuiz_Question_Answering_System
 {
-    class LuceneInteractive
+    public class LuceneInteractive
     {
         Lucene.Net.Store.Directory luceneIndexDirectory;
         Lucene.Net.Index.IndexWriter writer;
@@ -25,6 +25,11 @@ namespace EduQuiz_Question_Answering_System
 
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text"; //what is this for?
+
+        public LuceneInteractive(){
+
+        }
+
         public LuceneInteractive(string jsonFilePath, string indexPath)
         {
             luceneIndexDirectory = null;
@@ -45,9 +50,6 @@ namespace EduQuiz_Question_Answering_System
             }
 
             CleanUpIndexer();
-
-            
-
         }
 
         /// <summary>
@@ -116,11 +118,11 @@ namespace EduQuiz_Question_Answering_System
         /// Displays a ranked list of results to the screen
         /// </summary>
         /// <param name="results">A set of results</param>
-        public string DisplayResults()
+        public string GetResults(string query)
         {
 
             CreateSearcher();
-            TopDocs results=SearchText("RBA");
+            TopDocs results=SearchText(query);
 
 
             string resultsStr="";
@@ -132,7 +134,7 @@ namespace EduQuiz_Question_Answering_System
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
                 resultsStr+="Rank " + rank + " text " + myFieldValue+"\n";
             }
-            
+
             CleanUpSearcher();
 
             return resultsStr;
