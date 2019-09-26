@@ -26,7 +26,8 @@ namespace EduQuiz_Question_Answering_System
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text"; //what is this for?
 
-        public LuceneInteractive(){
+        public LuceneInteractive()
+        {
 
         }
 
@@ -37,14 +38,16 @@ namespace EduQuiz_Question_Answering_System
             analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();
             parser = new QueryParser(VERSION, TEXT_FN, analyzer);
 
-            
+
             CreateIndex(indexPath); //create index
 
-            collection=Utils.getCollection(jsonFilePath); //retrieve all documents from Json file
+            collection = Utils.getCollection(jsonFilePath); //retrieve all documents from Json file
 
-            foreach(Item item in collection){
-                foreach(Passage passage in item.Passages){
-                    string indexText=passage.url+" "+passage.passage_text; //Baseline System requirement--"all the text and url is indexed as a single field"
+            foreach (Item item in collection)
+            {
+                foreach (Passage passage in item.Passages)
+                {
+                    string indexText = passage.url + " " + passage.passage_text; //Baseline System requirement--"all the text and url is indexed as a single field"
                     IndexText(indexText);
                 }
             }
@@ -104,9 +107,9 @@ namespace EduQuiz_Question_Answering_System
         public TopDocs SearchText(string querytext)
         {
 
-            System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
+
 
             TopDocs results = searcher.Search(query, 100);
 
@@ -115,30 +118,46 @@ namespace EduQuiz_Question_Answering_System
 
 
         /// <summary>
-        /// Displays a ranked list of results to the screen
+        /// get Lucene.Query based on query text
         /// </summary>
-        /// <param name="results">A set of results</param>
-        public string GetResults(string query)
+        /// <param name="querytext">The text to search the index</param>
+        public Query GetQueryBasedOnQueryText(string querytext)
+        {
+            querytext = querytext.ToLower();
+            Query query = parser.Parse(querytext);
+
+            return query;
+
+        }
+
+
+
+        /// <summary>
+        /// Get a ranked list of results
+        /// </summary>
+        /// <param name="query">A set of results</param>
+        public List<string> GetResults(string query)
         {
 
             CreateSearcher();
-            TopDocs results=SearchText(query);
+            TopDocs results = SearchText(query);
 
 
-            string resultsStr="";
-            int rank = 0;
+            List<string> resultList = new List<string>();
+            int resultNum = 0;
             foreach (ScoreDoc scoreDoc in results.ScoreDocs)
             {
-                rank++;
+                resultNum += 1;
+                if (resultNum > 10) { break; }
                 Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
-                resultsStr+="Rank " + rank + " text " + myFieldValue+"\n";
+                // resultsStr += "Rank " + rank + " text " + myFieldValue + "\n";
+                resultList.Add(myFieldValue);
             }
 
             CleanUpSearcher();
 
-            return resultsStr;
-
+            return resultList;
         }
 
 

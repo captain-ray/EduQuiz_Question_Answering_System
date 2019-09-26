@@ -31,12 +31,12 @@
             this.txtbox_SearchingQuery = new System.Windows.Forms.TextBox();
             this.btn_Search = new System.Windows.Forms.Button();
             this.lbl_FinalQuery = new System.Windows.Forms.Label();
-            this.lbl_Results = new System.Windows.Forms.Label();
+            this.btn_Back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtbox_SearchingQuery
             // 
-            this.txtbox_SearchingQuery.Location = new System.Drawing.Point(329, 276);
+            this.txtbox_SearchingQuery.Location = new System.Drawing.Point(321, 274);
             this.txtbox_SearchingQuery.Name = "txtbox_SearchingQuery";
             this.txtbox_SearchingQuery.Size = new System.Drawing.Size(1066, 35);
             this.txtbox_SearchingQuery.TabIndex = 0;
@@ -54,27 +54,29 @@
             // lbl_FinalQuery
             // 
             this.lbl_FinalQuery.AutoSize = true;
-            this.lbl_FinalQuery.Location = new System.Drawing.Point(649, 474);
+            this.lbl_FinalQuery.Location = new System.Drawing.Point(651, 448);
             this.lbl_FinalQuery.Name = "lbl_FinalQuery";
             this.lbl_FinalQuery.Size = new System.Drawing.Size(154, 24);
             this.lbl_FinalQuery.TabIndex = 2;
             this.lbl_FinalQuery.Text = "Final Query:";
             // 
-            // lbl_Results
+            // btn_Back
             // 
-            this.lbl_Results.AutoSize = true;
-            this.lbl_Results.Location = new System.Drawing.Point(209, 612);
-            this.lbl_Results.Name = "lbl_Results";
-            this.lbl_Results.Size = new System.Drawing.Size(106, 24);
-            this.lbl_Results.TabIndex = 3;
-            this.lbl_Results.Text = "Results:";
+            this.btn_Back.Location = new System.Drawing.Point(125, 50);
+            this.btn_Back.Name = "btn_Back";
+            this.btn_Back.Size = new System.Drawing.Size(123, 53);
+            this.btn_Back.TabIndex = 3;
+            this.btn_Back.Text = "BACK";
+            this.btn_Back.UseVisualStyleBackColor = true;
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // form_Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1716, 1102);
-            this.Controls.Add(this.lbl_Results);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1714, 1429);
+            this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.lbl_FinalQuery);
             this.Controls.Add(this.btn_Search);
             this.Controls.Add(this.txtbox_SearchingQuery);
@@ -90,6 +92,6 @@
         private System.Windows.Forms.TextBox txtbox_SearchingQuery;
         private System.Windows.Forms.Button btn_Search;
         private System.Windows.Forms.Label lbl_FinalQuery;
-        private System.Windows.Forms.Label lbl_Results;
+        private System.Windows.Forms.Button btn_Back;
     }
 }

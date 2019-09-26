@@ -64,17 +64,22 @@ namespace EduQuiz_Question_Answering_System
         {
 
             DateTime startIndex = System.DateTime.Now;
-            myLuceneApp = new LuceneInteractive(jsonFilePath, @"Z:\Desktop\647_Searching_Engine_Index");
+            // myLuceneApp = new LuceneInteractive(@"Z:\Desktop\QUT\IFN647\Project\collection_sample.json", @"Z:\Desktop\647_Searching_Engine_Index");
+            myLuceneApp=new LuceneInteractive(jsonFilePath,indexPath);
             DateTime endIndex = System.DateTime.Now;
 
             string indexTime = "Index Time:" + (endIndex - startIndex);
             lbl_IndexTime.Text = indexTime;
 
+            // form_Search searchForm = new form_Search(myLuceneApp);
+            // Hide();
+            // searchForm.Show();
+
         }
 
         private void btn_GoToSearchPage_Click(object sender, EventArgs e)
         {
-            form_Search searchForm = new form_Search(myLuceneApp);
+            form_Search searchForm = new form_Search(myLuceneApp,this);
             Hide();
             searchForm.Show();
         }

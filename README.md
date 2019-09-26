@@ -13,8 +13,9 @@
 1. Document(2 fields)? 1st field-text , 2nd filed-url? // **one field, url+text!**
 2. Is it user allowed to choose any indexing strategy?
 3. Where should we use the 'query', 'answer'?
-4. Does the baseline system need to "pre-process" the query?
-5. How to implement the feature of "highlighting set of matching passage text for the query"?
+4. **Does the baseline system need to "pre-process" the query?** // not for baseline system, baseline system only needs the default query 
+5. **How to implement the feature of "highlighting set of matching passage text for the query"?**
+6. **For Baseline System, simply get final query from the 'Lecene.search.Query'?** //yes
 
 ------
 
@@ -86,4 +87,24 @@ It is able to open the JSON file based on user browsing, and specify a indexing 
 
 
 ![Progress2_2](images_implementation/Progress2_2.png)
+
+------
+
+
+
+![simple_analyser](images_FYI/simple_analyser.png)
+
+------
+
+#### Progress 3:
+
+1) display results in formatted detail
+
+2) view the entire passage in another form
+
+3) add Back button for better user experience
+
+![progress_3](images_implementation/progress_3.gif)
+
+------
 
