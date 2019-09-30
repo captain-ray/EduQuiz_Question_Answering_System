@@ -56,6 +56,8 @@ namespace EduQuiz_Question_Answering_System
                 if (tr == true)
                 {
                     myLuceneApp.SaveResult(txtbox_FilePath.Text);
+                    MessageBox.Show("Results have been saved!");
+                
                     Close();
                     indexForm.Show();
                 }

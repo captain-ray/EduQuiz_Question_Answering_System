@@ -15,12 +15,13 @@ namespace EduQuiz_Question_Answering_System
         private string jsonFilePath { get; set; }
         private string indexPath { get; set; }
         public static LuceneInteractive myLuceneApp;
-        
+
         public form_Index()
         {
             InitializeComponent();
             myLuceneApp = null;
-
+            jsonFilePath = "";
+            indexPath = "";
 
         }
 
@@ -28,15 +29,12 @@ namespace EduQuiz_Question_Answering_System
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = true;
-            // fileDialog.Title = "请选择文件";
             fileDialog.Title = "Please choose file";
-            // fileDialog.Filter = "所有文件(*.txt)|*.txt";
             fileDialog.Filter = "All files (*.json)|*.json";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string file = fileDialog.FileName;
-                // MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // MessageBox.Show("You have chosen:" + file, "Prompt for file choice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You have chosen:" + file, "Prompt for file choice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtbox_FilePath.Text = file;
 
 
@@ -48,8 +46,7 @@ namespace EduQuiz_Question_Answering_System
         {
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
             folderBrowserDialog1.Description = "Select a folder save the index";
-            //folderBrowserDialog1.ShowNewFolderButton = true;
-            //folderBrowserDialog1.RootFolder = Environment.SpecialFolder.Personal;
+
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -57,6 +54,8 @@ namespace EduQuiz_Question_Answering_System
                 if (folderName != "")
                 {
                     txtbox_FolderPath.Text = folderName;
+                    MessageBox.Show("You have chosen:" + folderName, "Prompt for index folder choice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
 
                 indexPath = folderName;
@@ -65,24 +64,31 @@ namespace EduQuiz_Question_Answering_System
 
         private void btn_CreateIndex_Click(object sender, EventArgs e)
         {
+            if (jsonFilePath == "" || indexPath == "")
+            {
+                MessageBox.Show("You have not chosen Collection Path or Index Path");
+                return;
+            }
 
             DateTime startIndex = System.DateTime.Now;
             // myLuceneApp = new LuceneInteractive(@"Z:\Desktop\QUT\IFN647\Project\collection_sample.json", @"Z:\Desktop\647_Searching_Engine_Index");
-            myLuceneApp=new LuceneInteractive(jsonFilePath,indexPath);
+            myLuceneApp = new LuceneInteractive(jsonFilePath, indexPath);
             DateTime endIndex = System.DateTime.Now;
 
             string indexTime = "Index Time:" + (endIndex - startIndex);
             lbl_IndexTime.Text = indexTime;
 
-            // form_Search searchForm = new form_Search(myLuceneApp);
-            // Hide();
-            // searchForm.Show();
 
         }
 
         private void btn_GoToSearchPage_Click(object sender, EventArgs e)
         {
-            form_Search searchForm = new form_Search(myLuceneApp,this);
+            if (myLuceneApp == null)
+            {
+                MessageBox.Show("You should index first!");
+                return;
+            }
+            form_Search searchForm = new form_Search(myLuceneApp, this);
             Hide();
             searchForm.Show();
         }
