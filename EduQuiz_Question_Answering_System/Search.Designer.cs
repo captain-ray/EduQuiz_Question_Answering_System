@@ -32,14 +32,13 @@
             this.btn_Search = new System.Windows.Forms.Button();
             this.lbl_FinalQuery = new System.Windows.Forms.Label();
             this.btn_Back = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtbox_SearchingQuery
             // 
             this.txtbox_SearchingQuery.Location = new System.Drawing.Point(160, 148);
-            this.txtbox_SearchingQuery.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtbox_SearchingQuery.Margin = new System.Windows.Forms.Padding(2);
             this.txtbox_SearchingQuery.Name = "txtbox_SearchingQuery";
             this.txtbox_SearchingQuery.Size = new System.Drawing.Size(535, 20);
             this.txtbox_SearchingQuery.TabIndex = 0;
@@ -47,7 +46,7 @@
             // btn_Search
             // 
             this.btn_Search.Location = new System.Drawing.Point(390, 187);
-            this.btn_Search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Search.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(98, 35);
             this.btn_Search.TabIndex = 1;
@@ -68,7 +67,7 @@
             // btn_Back
             // 
             this.btn_Back.Location = new System.Drawing.Point(62, 27);
-            this.btn_Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Back.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Back.Name = "btn_Back";
             this.btn_Back.Size = new System.Drawing.Size(62, 29);
             this.btn_Back.TabIndex = 3;
@@ -76,18 +75,9 @@
             this.btn_Back.UseVisualStyleBackColor = true;
             this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(398, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(532, 187);
+            this.button2.Location = new System.Drawing.Point(535, 187);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(104, 35);
             this.button2.TabIndex = 5;
@@ -103,12 +93,11 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(857, 770);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.lbl_FinalQuery);
             this.Controls.Add(this.btn_Search);
             this.Controls.Add(this.txtbox_SearchingQuery);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "form_Search";
             this.Text = "EduQuiz Question Answering System---Search";
             this.ResumeLayout(false);
@@ -122,7 +111,6 @@
         private System.Windows.Forms.Button btn_Search;
         private System.Windows.Forms.Label lbl_FinalQuery;
         private System.Windows.Forms.Button btn_Back;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }
 }
