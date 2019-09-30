@@ -10,6 +10,7 @@ using Lucene.Net.Store; //for Directory
 using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
 using static System.Console;
+using System.IO;
 
 namespace EduQuiz_Question_Answering_System
 {
@@ -104,14 +105,14 @@ namespace EduQuiz_Question_Answering_System
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public TopDocs SearchText(string querytext)
+        public TopDocs SearchText(string querytext, int searchNumer)
         {
 
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
 
 
-            TopDocs results = searcher.Search(query, 100);
+            TopDocs results = searcher.Search(query, searchNumer);
 
             return results;
         }
@@ -140,7 +141,7 @@ namespace EduQuiz_Question_Answering_System
         {
 
             CreateSearcher();
-            TopDocs results = SearchText(query);
+            TopDocs results = SearchText(query, 100);
 
 
             List<string> resultList = new List<string>();
@@ -160,6 +161,31 @@ namespace EduQuiz_Question_Answering_System
             return resultList;
         }
 
+        public void SaveRusult(string query, string filePath)
+        {
+
+            CreateSearcher();
+            StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default);//实例化StreamWriter
+            TopDocs results = SearchText(query, 10);
+            //TopDocs results = SearchText(query, searcher.MaxDoc);
+
+
+            //List<string> resultList = new List<string>();
+            int rank = 0;
+            foreach (ScoreDoc scoreDoc in results.ScoreDocs)
+            {
+                rank += 1;
+                
+                Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
+                string myFieldValue = doc.Get(TEXT_FN).ToString();
+                // resultsStr += "Rank " + rank + " text " + myFieldValue + "\n";
+                //string save = query + "\t" + "Q0" + "\t" + scoreDoc.Score + "\t" + "n9916113_our team";
+                sw.WriteLine(query + "\t" + "Q0" + "\t" + scoreDoc.Score + "\t" + "n9916113_our team");
+                //resultList.Add(save);
+            }
+            sw.Close();
+            CleanUpSearcher();
+        }
 
         /// <summary>
         /// Closes the index after searching

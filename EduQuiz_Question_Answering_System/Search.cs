@@ -92,6 +92,7 @@ namespace EduQuiz_Question_Answering_System
                     this.Controls.Add(panel);
                 }
             }
+            button2.Visible = true;
         }
 
 
@@ -114,6 +115,13 @@ namespace EduQuiz_Question_Answering_System
         {
             Close();
             indexForm.Show();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Save saveForm = new Save(myLuceneApp, txtbox_SearchingQuery.Text);
+            Hide();
+            saveForm.Show();
         }
     }
 }
