@@ -23,7 +23,7 @@ namespace EduQuiz_Question_Answering_System
         IndexSearcher searcher;
 
         List<Item> collection;
-
+        List<string> saveQuuery = new List<string>();
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text"; //what is this for?
 
@@ -168,9 +168,22 @@ namespace EduQuiz_Question_Answering_System
             StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default);//实例化StreamWriter
             TopDocs results = SearchText(query, 10);
             //TopDocs results = SearchText(query, searcher.MaxDoc);
+            saveQuuery.Add(query);
+            int idx = saveQuuery.IndexOf(query) + 1;
+            int length = Math.Abs(idx).ToString().Length;
+            string queryId = "";
+            if (length == 1) {
+                queryId = "00" + idx.ToString();
+            }
+            if (length == 2){
+                    queryId = "0" + idx.ToString();
+            }
+            if (length == 3)
+            {
+                queryId = idx.ToString();
+            }
 
 
-            //List<string> resultList = new List<string>();
             int rank = 0;
             foreach (ScoreDoc scoreDoc in results.ScoreDocs)
             {
@@ -180,7 +193,7 @@ namespace EduQuiz_Question_Answering_System
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
                 // resultsStr += "Rank " + rank + " text " + myFieldValue + "\n";
                 //string save = query + "\t" + "Q0" + "\t" + scoreDoc.Score + "\t" + "n9916113_our team";
-                sw.WriteLine(query + "\t" + "Q0" + "\t" + scoreDoc.Score + "\t" + "n9916113_our team");
+                sw.WriteLine(queryId + "\t" + "Q0" + "\t" + rank + "\t" + scoreDoc.Score + "\t" + "n9916113_n10290320_n10381112_our team");
                 //resultList.Add(save);
             }
             sw.Close();
@@ -194,8 +207,5 @@ namespace EduQuiz_Question_Answering_System
         {
             searcher.Dispose();
         }
-
-
-
     }
 }
