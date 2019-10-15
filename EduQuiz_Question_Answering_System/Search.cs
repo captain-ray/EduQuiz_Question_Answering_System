@@ -18,16 +18,24 @@ namespace EduQuiz_Question_Answering_System
 
         Form indexForm;
 
+        List<Panel> panels=null; //store panels, for removing them later for the subsequent searching
+
         public form_Search(LuceneInteractive luceneApp,Form previousForm)
         {
             InitializeComponent();
             myLuceneApp = luceneApp;
             indexForm=previousForm;
+
+            panels=new List<Panel>();
         }
 
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
+            foreach(Panel panel in panels){
+                this.Controls.Remove(panel); //remove the previous result panels
+            }
+
             string queryText = txtbox_SearchingQuery.Text;
 
             if (queryText != "")
@@ -48,6 +56,7 @@ namespace EduQuiz_Question_Answering_System
                     // panel.AutoScroll = true;
                     panel.Location = new System.Drawing.Point(panelX, panelY + panelHeight * i);
                     panel.Size = new System.Drawing.Size(panelWidth, panelHeight);
+                    
 
 
 
@@ -88,6 +97,9 @@ namespace EduQuiz_Question_Answering_System
                     passageTextLabel.Size = new System.Drawing.Size(panelWidth, 40);
                     panel.Controls.Add(passageTextLabel);
 
+                    // panel.BringToFront();
+
+                    panels.Add(panel);
 
                     this.Controls.Add(panel);
                 }

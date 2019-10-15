@@ -26,6 +26,7 @@ namespace EduQuiz_Question_Answering_System
         List<string> saveQuuery = new List<string>();
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text"; //what is this for?
+        const string ID_FN_PASSAGEID="Passage_ID";
 
         public LuceneInteractive()
         {
@@ -49,7 +50,7 @@ namespace EduQuiz_Question_Answering_System
                 foreach (Passage passage in item.Passages)
                 {
                     string indexText = passage.url + " " + passage.passage_text; //Baseline System requirement--"all the text and url is indexed as a single field"
-                    IndexText(indexText);
+                    IndexTextAndPassageID(indexText,passage.passage_ID.ToString());
                 }
             }
 
@@ -72,12 +73,15 @@ namespace EduQuiz_Question_Answering_System
         /// Indexes a given string into the index
         /// </summary>
         /// <param name="text">The text to index</param>
-        public void IndexText(string text)
+        public void IndexTextAndPassageID(string text,string passage_ID)
         {
             //Baseline system requirements: 3)The index does not save information related to field normalisation--ANALYZED_NO_NORMS.  4)The index does not save information related to term vectors--TermVector.NO
-            Lucene.Net.Documents.Field field = new Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
+            Lucene.Net.Documents.Field text_field = new Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
+            Lucene.Net.Documents.Field passage_ID_field = new Field(ID_FN_PASSAGEID, passage_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
             Lucene.Net.Documents.Document doc = new Document();
-            doc.Add(field);
+            doc.Add(text_field);
+            doc.Add(passage_ID_field);
+
             writer.AddDocument(doc);
         }
 
@@ -191,9 +195,10 @@ namespace EduQuiz_Question_Answering_System
                 
                 Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
+                string passage_ID=doc.Get(ID_FN_PASSAGEID).ToString();
                 // resultsStr += "Rank " + rank + " text " + myFieldValue + "\n";
                 //string save = query + "\t" + "Q0" + "\t" + scoreDoc.Score + "\t" + "n9916113_our team";
-                sw.WriteLine(queryId + "\t" + "Q0" + "\t" + rank + "\t" + scoreDoc.Score + "\t" + "n9916113_n10290320_n10381112_our team");
+                sw.WriteLine(queryId + "\t" + "Q0" + "\t" + passage_ID + "\t" + rank + "\t" + scoreDoc.Score + "\t" + "n9916113_n10290320_n10381112_Climbers");
                 //resultList.Add(save);
             }
             sw.Close();
