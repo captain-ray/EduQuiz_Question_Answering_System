@@ -14,9 +14,12 @@ namespace EduQuiz_Question_Answering_System
         [STAThread]
         static void Main()
         {
+            //Simulation simulation = new Simulation();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new form_Index());
+
         }
     }
 }

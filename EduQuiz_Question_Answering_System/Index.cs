@@ -15,10 +15,13 @@ namespace EduQuiz_Question_Answering_System
         private string jsonFilePath { get; set; }
         private string indexPath { get; set; }
         public static LuceneInteractive myLuceneApp;
+        
         public form_Index()
         {
             InitializeComponent();
             myLuceneApp = null;
+
+
         }
 
         private void btn_OpenLocalFile_Click(object sender, EventArgs e)
