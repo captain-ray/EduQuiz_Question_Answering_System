@@ -25,7 +25,7 @@ namespace EduQuiz_Question_Answering_System
         List<Item> collection;
         List<string> saveQuuery = new List<string>();
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
-        const string TEXT_FN = "Text"; //what is this for?
+        const string TEXT_FN = "Text"; 
         const string ID_FN_PASSAGEID="Passage_ID";
 
         public LuceneInteractive()
@@ -70,9 +70,10 @@ namespace EduQuiz_Question_Answering_System
 
 
         /// <summary>
-        /// Indexes a given string into the index
+        /// Indexes a given string into the index, and passage_ID into index
         /// </summary>
         /// <param name="text">The text to index</param>
+        /// <param name="passage_ID">The passage_ID to index</param>
         public void IndexTextAndPassageID(string text,string passage_ID)
         {
             //Baseline system requirements: 3)The index does not save information related to field normalisation--ANALYZED_NO_NORMS.  4)The index does not save information related to term vectors--TermVector.NO
@@ -165,7 +166,7 @@ namespace EduQuiz_Question_Answering_System
             return resultList;
         }
 
-        public void SaveRusult(string query, string filePath)
+        public void SaveResult(string query, string filePath)
         {
 
             CreateSearcher();
