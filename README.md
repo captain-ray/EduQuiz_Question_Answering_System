@@ -92,7 +92,7 @@ It is able to open the JSON file based on user browsing, and specify a indexing 
 
 
 
-![simple_analyser](images_FYI/simple_analyser.png)
+![simple_analyser](images_FYI/simple_analyser.png)tr
 
 ------
 

@@ -52,7 +52,7 @@ namespace EduQuiz_Question_Answering_System
                 foreach (Passage passage in item.Passages)
                 {
                     string indexText = passage.url + " " + passage.passage_text; //Baseline System requirement--"all the text and url is indexed as a single field"
-                    IndexTextAndPassageID(indexText, passage.passage_ID.ToString(),item.query_id.ToString());
+                    IndexTextAndPassageID(indexText, passage.passage_ID.ToString(), item.query_id.ToString());
                 }
             }
 
@@ -76,7 +76,7 @@ namespace EduQuiz_Question_Answering_System
         /// </summary>
         /// <param name="text">The text to index</param>
         /// <param name="passage_ID">The passage_ID to index</param>
-        public void IndexTextAndPassageID(string text, string passage_ID,string query_ID)
+        public void IndexTextAndPassageID(string text, string passage_ID, string query_ID)
         {
             //Baseline system requirements: 3)The index does not save information related to field normalisation--ANALYZED_NO_NORMS.  4)The index does not save information related to term vectors--TermVector.NO
             Lucene.Net.Documents.Field text_field = new Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
@@ -118,6 +118,14 @@ namespace EduQuiz_Question_Answering_System
         {
 
             querytext = querytext.ToLower();
+
+            /* 
+                when creating Simulation results(BaselineResults)
+                when parsing the query = "what is a fracture]",
+                shows the error "Cannot parse 'what is a fracture]':Lexical error..."
+            */
+            querytext = QueryParser.Escape(querytext); //escape the double quote and other special characters
+
             Query query = parser.Parse(querytext);
 
 
@@ -153,12 +161,14 @@ namespace EduQuiz_Question_Answering_System
             TopDocs results = SearchText(query, 100);
 
 
+
+
             List<string> resultList = new List<string>();
             int resultNum = 0;
             foreach (ScoreDoc scoreDoc in results.ScoreDocs)
             {
+                // if (resultNum >= 10) { break; }
                 resultNum += 1;
-                if (resultNum > 10) { break; }
                 Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
                 // resultsStr += "Rank " + rank + " text " + myFieldValue + "\n";
@@ -216,31 +226,13 @@ namespace EduQuiz_Question_Answering_System
             CleanUpSearcher();
         }
 
-        public void SaveResultForSimulation(string query, string filePath,string query_ID)
+        public void SaveResultForSimulation(string query, string filePath, string query_ID)
         {
 
             CreateSearcher();
-            StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default);//实例化StreamWriter
+            StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default); //instantiate StreamWriter
             TopDocs results = SearchText(query, 10);
-            //TopDocs results = SearchText(query, searcher.MaxDoc);
-            // saveQuuery.Add(query);
-            // int idx = saveQuuery.IndexOf(query) + 1;
-            // int length = Math.Abs(idx).ToString().Length;
-            // string queryId = "";
-            // if (length == 1)
-            // {
-            //     queryId = "00" + idx.ToString();
-            // }
-            // if (length == 2)
-            // {
-            //     queryId = "0" + idx.ToString();
-            // }
-            // if (length == 3)
-            // {
-            //     queryId = idx.ToString();
-            // }
-
-
+         
             int rank = 0;
             foreach (ScoreDoc scoreDoc in results.ScoreDocs)
             {
@@ -249,14 +241,9 @@ namespace EduQuiz_Question_Answering_System
                 Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
                 string passage_ID = doc.Get(ID_FN_PASSAGEID).ToString();
-                // string query_ID = doc.Get(ID_FN_QUERYID).ToString();
-                // resultsStr += "Rank " + rank + " text " + myFieldValue + "\n";
-                //string save = query + "\t" + "Q0" + "\t" + scoreDoc.Score + "\t" + "n9916113_our team";
-
-                // sw.WriteLine(queryId + "\t" + "Q0" + "\t" + passage_ID + "\t" + rank + "\t" + scoreDoc.Score + "\t" + "n9916113_n10290320_n10381112_Climbers");
+          
                 sw.WriteLine(query_ID + "\t" + "Q0" + "\t" + passage_ID + "\t" + rank + "\t" + scoreDoc.Score + "\t" + "n9916113_n10290320_n10381112_Climbers"); //for simulation
 
-                //resultList.Add(save);
             }
             sw.Close();
             CleanUpSearcher();

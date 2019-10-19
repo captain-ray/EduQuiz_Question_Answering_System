@@ -36,16 +36,18 @@
             // 
             // txtbox_FilePath
             // 
-            this.txtbox_FilePath.Location = new System.Drawing.Point(173, 182);
+            this.txtbox_FilePath.Location = new System.Drawing.Point(346, 336);
+            this.txtbox_FilePath.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txtbox_FilePath.Name = "txtbox_FilePath";
-            this.txtbox_FilePath.Size = new System.Drawing.Size(285, 20);
+            this.txtbox_FilePath.Size = new System.Drawing.Size(566, 35);
             this.txtbox_FilePath.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(488, 169);
+            this.button1.Location = new System.Drawing.Point(976, 312);
+            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 45);
+            this.button1.Size = new System.Drawing.Size(272, 83);
             this.button1.TabIndex = 1;
             this.button1.Text = "Save to Local File";
             this.button1.UseVisualStyleBackColor = true;
@@ -53,9 +55,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(296, 293);
+            this.button2.Location = new System.Drawing.Point(592, 541);
+            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(150, 42);
             this.button2.TabIndex = 2;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
@@ -63,23 +66,25 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(527, 293);
+            this.button3.Location = new System.Drawing.Point(124, 83);
+            this.button3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(150, 42);
             this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
+            this.button3.Text = "BACK";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // Save
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1600, 831);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtbox_FilePath);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Save";
             this.Text = "Save";
             this.ResumeLayout(false);
