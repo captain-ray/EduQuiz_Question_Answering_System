@@ -23,12 +23,16 @@ namespace EduQuiz_Question_Answering_System
         IndexSearcher searcher;
 
         List<Item> collection;
-        List<string> saveQuuery = new List<string>();
+        List<string> saveQuery = new List<string>();
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text";
         const string ID_FN_PASSAGEID = "Passage_ID";
 
         const string ID_FN_QUERYID = "Query_ID";
+
+        string searchQuery="";
+
+        TopDocs searchResultDocs=null;
 
         public LuceneInteractive()
         {
@@ -156,9 +160,12 @@ namespace EduQuiz_Question_Answering_System
         /// <param name="query">A set of results</param>
         public List<string> GetResults(string query)
         {
+            searchQuery=query;
 
             CreateSearcher();
             TopDocs results = SearchText(query, 100);
+
+            searchResultDocs=results;
 
 
 
@@ -180,15 +187,19 @@ namespace EduQuiz_Question_Answering_System
             return resultList;
         }
 
-        public void SaveResult(string query, string filePath)
+
+
+        public void SaveResult( string filePath)
         {
+
+            string query=searchQuery;
 
             CreateSearcher();
             StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default);//实例化StreamWriter
-            TopDocs results = SearchText(query, 10);
-            //TopDocs results = SearchText(query, searcher.MaxDoc);
-            saveQuuery.Add(query);
-            int idx = saveQuuery.IndexOf(query) + 1;
+            TopDocs results = searchResultDocs;
+            // TopDocs results = SearchText(query, searcher.MaxDoc);
+            saveQuery.Add(query);
+            int idx = saveQuery.IndexOf(query) + 1;
             int length = Math.Abs(idx).ToString().Length;
             string queryId = "";
             if (length == 1)
@@ -232,7 +243,7 @@ namespace EduQuiz_Question_Answering_System
             CreateSearcher();
             StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default); //instantiate StreamWriter
             TopDocs results = SearchText(query, 10);
-         
+
             int rank = 0;
             foreach (ScoreDoc scoreDoc in results.ScoreDocs)
             {
@@ -241,7 +252,7 @@ namespace EduQuiz_Question_Answering_System
                 Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
                 string myFieldValue = doc.Get(TEXT_FN).ToString();
                 string passage_ID = doc.Get(ID_FN_PASSAGEID).ToString();
-          
+
                 sw.WriteLine(query_ID + "\t" + "Q0" + "\t" + passage_ID + "\t" + rank + "\t" + scoreDoc.Score + "\t" + "n9916113_n10290320_n10381112_Climbers"); //for simulation
 
             }

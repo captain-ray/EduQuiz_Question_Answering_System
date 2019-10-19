@@ -20,6 +20,9 @@ namespace EduQuiz_Question_Answering_System
 
         List<Panel> panels = null; //store panels, for removing them later for the subsequent searching
 
+
+
+
         public form_Search(LuceneInteractive luceneApp, Form previousForm)
         {
             InitializeComponent();
@@ -156,7 +159,7 @@ namespace EduQuiz_Question_Answering_System
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Save saveForm = new Save(myLuceneApp, txtbox_SearchingQuery.Text, this);
+            Save saveForm = new Save(myLuceneApp, this);
             Hide();
             saveForm.Show();
         }
