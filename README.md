@@ -1,4 +1,4 @@
-# EduQuiz_Question_Answering_System
+# Custom_EduQuiz_Question_Answering_System
 
 #### FYI:
 
