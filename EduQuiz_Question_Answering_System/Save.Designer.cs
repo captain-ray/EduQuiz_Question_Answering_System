@@ -37,7 +37,7 @@
             // txtbox_FilePath
             // 
             this.txtbox_FilePath.Location = new System.Drawing.Point(346, 336);
-            this.txtbox_FilePath.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtbox_FilePath.Margin = new System.Windows.Forms.Padding(6);
             this.txtbox_FilePath.Name = "txtbox_FilePath";
             this.txtbox_FilePath.Size = new System.Drawing.Size(566, 35);
             this.txtbox_FilePath.TabIndex = 0;
@@ -45,7 +45,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(976, 312);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(272, 83);
             this.button1.TabIndex = 1;
@@ -56,7 +56,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(592, 541);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 42);
             this.button2.TabIndex = 2;
@@ -67,7 +67,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(124, 83);
-            this.button3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button3.Margin = new System.Windows.Forms.Padding(6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 42);
             this.button3.TabIndex = 3;
@@ -84,9 +84,9 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtbox_FilePath);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Save";
-            this.Text = "Save";
+            this.Text = "Custom_EduQuiz Question Answering System---Save";
             this.ResumeLayout(false);
             this.PerformLayout();
 

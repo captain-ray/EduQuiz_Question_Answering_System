@@ -43,13 +43,20 @@ namespace EduQuiz_Question_Answering_System
             DateTime start = System.DateTime.Now;
 
             bool searchingOption_multiTerm = radio_MultiTerm.Checked; // with pre-processing
+            bool searchingOption_asItIs = radio_AsItIs.Checked; 
 
             string queryText = txtbox_SearchingQuery.Text;
 
-            if (searchingOption_multiTerm)
+            // if (searchingOption_multiTerm)
+            // {
+            //     queryText = Utils.Pre_Process_Query(queryText); // pre-process query by tokenizing and stopwords removal
+            // }
+
+            if (searchingOption_asItIs)
             {
-                queryText = Utils.Pre_Process_Query(queryText); // pre-process query by tokenizing and stopwords removal
+                queryText = "\"" + queryText + "\"";
             }
+
 
 
 

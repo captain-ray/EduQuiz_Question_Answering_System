@@ -34,19 +34,19 @@
             // 
             // lbl_PassageText
             // 
-            this.lbl_PassageText.Location = new System.Drawing.Point(32, 89);
-            this.lbl_PassageText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_PassageText.Location = new System.Drawing.Point(64, 164);
+            this.lbl_PassageText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PassageText.Name = "lbl_PassageText";
-            this.lbl_PassageText.Size = new System.Drawing.Size(600, 217);
+            this.lbl_PassageText.Size = new System.Drawing.Size(1200, 401);
             this.lbl_PassageText.TabIndex = 0;
             this.lbl_PassageText.Text = "PassageText";
             // 
             // btn_Back
             // 
-            this.btn_Back.Location = new System.Drawing.Point(34, 29);
-            this.btn_Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Back.Location = new System.Drawing.Point(68, 54);
+            this.btn_Back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Back.Name = "btn_Back";
-            this.btn_Back.Size = new System.Drawing.Size(78, 24);
+            this.btn_Back.Size = new System.Drawing.Size(156, 44);
             this.btn_Back.TabIndex = 1;
             this.btn_Back.Text = "BACK";
             this.btn_Back.UseVisualStyleBackColor = true;
@@ -54,14 +54,14 @@
             // 
             // form_ViewEntirePassage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 424);
+            this.ClientSize = new System.Drawing.Size(1330, 783);
             this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.lbl_PassageText);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "form_ViewEntirePassage";
-            this.Text = "EduQuiz Question Answering System---ViewEntirePassage";
+            this.Text = "Custom_EduQuiz Question Answering System---ViewEntirePassage";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form_ViewEntirePassage_FormClosing);
             this.ResumeLayout(false);
 

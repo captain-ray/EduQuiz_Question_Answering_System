@@ -37,6 +37,7 @@
             this.radio_AsItIs = new System.Windows.Forms.RadioButton();
             this.radio_MultiTerm = new System.Windows.Forms.RadioButton();
             this.lbl_SearchingTime_and_NumOfResults = new System.Windows.Forms.Label();
+            this.checkbox_QueryExpansion = new System.Windows.Forms.CheckBox();
             this.groupBox_SearchingOption.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,12 +133,23 @@
             this.lbl_SearchingTime_and_NumOfResults.Size = new System.Drawing.Size(0, 24);
             this.lbl_SearchingTime_and_NumOfResults.TabIndex = 7;
             // 
+            // checkbox_QueryExpansion
+            // 
+            this.checkbox_QueryExpansion.AutoSize = true;
+            this.checkbox_QueryExpansion.Location = new System.Drawing.Point(1207, 346);
+            this.checkbox_QueryExpansion.Name = "checkbox_QueryExpansion";
+            this.checkbox_QueryExpansion.Size = new System.Drawing.Size(222, 28);
+            this.checkbox_QueryExpansion.TabIndex = 8;
+            this.checkbox_QueryExpansion.Text = "Query Expansion";
+            this.checkbox_QueryExpansion.UseVisualStyleBackColor = true;
+            // 
             // form_Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1714, 1422);
+            this.Controls.Add(this.checkbox_QueryExpansion);
             this.Controls.Add(this.lbl_SearchingTime_and_NumOfResults);
             this.Controls.Add(this.groupBox_SearchingOption);
             this.Controls.Add(this.button2);
@@ -147,7 +159,7 @@
             this.Controls.Add(this.txtbox_SearchingQuery);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "form_Search";
-            this.Text = "EduQuiz Question Answering System---Search";
+            this.Text = "Custom_EduQuiz Question Answering System---Search";
             this.groupBox_SearchingOption.ResumeLayout(false);
             this.groupBox_SearchingOption.PerformLayout();
             this.ResumeLayout(false);
@@ -166,5 +178,6 @@
         private System.Windows.Forms.RadioButton radio_AsItIs;
         private System.Windows.Forms.RadioButton radio_MultiTerm;
         private System.Windows.Forms.Label lbl_SearchingTime_and_NumOfResults;
+        private System.Windows.Forms.CheckBox checkbox_QueryExpansion;
     }
 }

@@ -139,7 +139,7 @@
             this.Controls.Add(this.lbl_IndexPath);
             this.Controls.Add(this.lbl_CollectionPath);
             this.Name = "form_Index";
-            this.Text = "EduQuiz Question Answering System---Index";
+            this.Text = "Custom_EduQuiz Question Answering System---Index";
             this.ResumeLayout(false);
             this.PerformLayout();
 
