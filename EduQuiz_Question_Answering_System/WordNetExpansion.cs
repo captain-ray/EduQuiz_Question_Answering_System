@@ -61,7 +61,7 @@ namespace EduQuiz_Question_Answering_System
         {
             List<string> thesaurus = new List<string>();
             // string expandedToken_Weighted = token + "^5"; // if adding boost to word, will not get any results
-            string expandedToken_Weighted = token + "";
+            string expandedToken_Weighted = token + " " + token + " " + token + " " + token + " " + token;
 
             thesaurus = GetThesaurus(token);
 

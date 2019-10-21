@@ -25,7 +25,7 @@ namespace EduQuiz_Question_Answering_System
 
         public Simulation()
         {
-            GetBaselineResults(); //get baseline results, iterate every query in the collection
+            GetResults(); //get results, iterate every query in the collection
 
             CreateQrels_RetrieveListOfPassages(); //create qrels files for the metrics of retrieving the list of passages linked to the query
 
@@ -33,8 +33,8 @@ namespace EduQuiz_Question_Answering_System
         }
 
 
-        //get baseline results, iterate every query in the collection
-        public void GetBaselineResults()
+        //get results, iterate every query in the collection
+        public void GetResults()
         {
             myLuceneApp = new LuceneInteractive(jsonFilePath, indexPath);
 
