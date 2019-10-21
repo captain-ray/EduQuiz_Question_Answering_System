@@ -4,6 +4,8 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
 
+
+
 namespace EduQuiz_Question_Answering_System
 {
     class Utils
@@ -11,6 +13,8 @@ namespace EduQuiz_Question_Answering_System
 
         // stopwords for custom system
         public static string[] STOPWORDS = { "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now" };
+
+       
 
         // const string jsonFilePath = @"Z:\Desktop\QUT\IFN647\Project\collection.json";
         //parse .json file and then get the whole collection, which is composed of 'Item'
@@ -28,6 +32,8 @@ namespace EduQuiz_Question_Answering_System
 
             return collection;
         }
+
+        
 
 
         public static string Pre_Process_Query(string query)
@@ -59,15 +65,14 @@ namespace EduQuiz_Question_Answering_System
         /// <returns>The array of tokens without any stopwords</returns>
         public static string[] StopWordFilter(string[] tokens)
         {
-            string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with" };
 
             int numTokens = tokens.Count();
             List<string> filteredTokens = new List<string>();
             for (int i = 0; i < numTokens; i++)
             {
                 string token = tokens[i];
-                // if (!stopWords.Contains(token) && (token.Length > 2)) filteredTokens.Add(token);
-                if (!stopWords.Contains(token)) filteredTokens.Add(token);
+                if (!STOPWORDS.Contains(token) && (token.Length > 2)) filteredTokens.Add(token);
+                // if (!STOPWORDS.Contains(token)) filteredTokens.Add(token);
             }
             return filteredTokens.ToArray<string>();
         }

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Lucene.Net.Search; // for IndexSearcher
 
+
+
 namespace EduQuiz_Question_Answering_System
 {
     public partial class form_Search : Form
@@ -20,7 +22,7 @@ namespace EduQuiz_Question_Answering_System
 
         List<Panel> panels = null; //store panels, for removing them later for the subsequent searching
 
-
+        WordNetExpansion wordNetExpansion;
 
 
         public form_Search(LuceneInteractive luceneApp, Form previousForm)
@@ -30,7 +32,9 @@ namespace EduQuiz_Question_Answering_System
             indexForm = previousForm;
 
             panels = new List<Panel>();
+            wordNetExpansion = new WordNetExpansion();
         }
+
 
 
         private void btn_Search_Click(object sender, EventArgs e)
@@ -42,8 +46,8 @@ namespace EduQuiz_Question_Answering_System
 
             DateTime start = System.DateTime.Now;
 
-            bool searchingOption_multiTerm = radio_MultiTerm.Checked; // with pre-processing
-            bool searchingOption_asItIs = radio_AsItIs.Checked; 
+            // bool searchingOption_multiTerm = radio_MultiTerm.Checked; // with pre-processing
+            bool searchingOption_asItIs = radio_AsItIs.Checked;
 
             string queryText = txtbox_SearchingQuery.Text;
 
@@ -55,6 +59,11 @@ namespace EduQuiz_Question_Answering_System
             if (searchingOption_asItIs)
             {
                 queryText = "\"" + queryText + "\"";
+            }
+
+            if (checkbox_QueryExpansion.Checked)
+            {
+                queryText = wordNetExpansion.GetExpandedQuery_Weighted(queryText);
             }
 
 
@@ -152,9 +161,6 @@ namespace EduQuiz_Question_Answering_System
             form_ViewEntirePassage viewEntirePassageForm = new form_ViewEntirePassage(passage_text, this);
             Hide();
             viewEntirePassageForm.Show();
-
-
-
 
         }
 

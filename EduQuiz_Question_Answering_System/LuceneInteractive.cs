@@ -27,12 +27,12 @@ namespace EduQuiz_Question_Answering_System
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text";
         const string TITLE_FN = "Title";
-        const string QUERY_FN = "Query";
+        // const string QUERY_FN = "Query";
         const string ID_FN_PASSAGEID = "Passage_ID";
 
         const string ID_FN_QUERYID = "Query_ID";
 
-        string[] FIELDS = { TEXT_FN, TITLE_FN, QUERY_FN };
+        string[] FIELDS = { TEXT_FN, TITLE_FN };
 
         string searchQuery = "";
 
@@ -102,24 +102,24 @@ namespace EduQuiz_Question_Answering_System
         // / <param name="passage_ID">The passage_ID to index</param>
         public void IndexProcess(string passage_text, string title, string query, string passage_ID, string query_ID)
         {
-            // Separate fields for passage_text, title and query. Each field has its own boost. (passage_text.boost=3,title.boost=5,query.boost=8)
+            // Separate fields for passage_text, title. Each field has its own boost. (passage_text.boost=2,title.boost=5)
             Lucene.Net.Documents.Field text_field = new Field(TEXT_FN, passage_text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
             Lucene.Net.Documents.Field title_field = new Field(TITLE_FN, title, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
-            Lucene.Net.Documents.Field query_field = new Field(QUERY_FN, query, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
+            // Lucene.Net.Documents.Field query_field = new Field(QUERY_FN, query, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
             Lucene.Net.Documents.Field passage_ID_field = new Field(ID_FN_PASSAGEID, passage_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
             Lucene.Net.Documents.Field query_ID_field = new Field(ID_FN_QUERYID, query_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
 
             //add boost
-            text_field.Boost = 3;
+            text_field.Boost = 2;
             title_field.Boost = 5;
-            query_field.Boost = 8;
+            // query_field.Boost = 8;
 
 
 
             Lucene.Net.Documents.Document doc = new Document();
             doc.Add(text_field);
             doc.Add(title_field);
-            doc.Add(query_field);
+            // doc.Add(query_field);
             doc.Add(passage_ID_field);
             doc.Add(query_ID_field);
 
@@ -281,10 +281,14 @@ namespace EduQuiz_Question_Answering_System
             CreateSearcher();
             StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default); //instantiate StreamWriter
             TopDocs results = SearchText(query, 10);
-
+            
+            int count=0;
             int rank = 0;
             foreach (ScoreDoc scoreDoc in results.ScoreDocs)
             {
+                count+=1;
+                if(count>10) break;
+
                 rank += 1;
 
                 Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
