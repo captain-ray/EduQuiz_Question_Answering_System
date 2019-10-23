@@ -41,8 +41,7 @@ namespace EduQuiz_Question_Answering_System
             string[] tokensNoStops = StopWordFilter(tokens);
 
             string expandedQuery_Weighted = "";
-
-
+            
             foreach (string token in tokensNoStops)
             {
                 string expandedToken_Weighted = GetExpandedToken_Weighted(token);
@@ -52,8 +51,6 @@ namespace EduQuiz_Question_Answering_System
             expandedQuery_Weighted = expandedQuery_Weighted.TrimEnd(' ');
 
             return expandedQuery_Weighted;
-
-
         }
 
         //get a expanded also weighted token, for example, "book" ---> "book^5 ledger script"
@@ -61,7 +58,7 @@ namespace EduQuiz_Question_Answering_System
         {
             List<string> thesaurus = new List<string>();
             // string expandedToken_Weighted = token + "^5"; // if adding boost to word, will not get any results
-            string expandedToken_Weighted = token + " " + token + " " + token + " " + token + " " + token;
+            string expandedToken_Weighted = token + " " + token + " " + token + " " + token + " " + token; // alternative method to add weight to original words
 
             thesaurus = GetThesaurus(token);
 
@@ -72,9 +69,7 @@ namespace EduQuiz_Question_Answering_System
                     expandedToken_Weighted = expandedToken_Weighted + " " + word;
                 }
             }
-
             return expandedToken_Weighted;
-
         }
 
 

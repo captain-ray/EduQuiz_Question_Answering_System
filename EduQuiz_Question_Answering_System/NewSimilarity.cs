@@ -12,9 +12,7 @@ namespace EduQuiz_Question_Answering_System
     {
         public override float Tf(float freq)
         {
-            // return (float) System.Math.Sqrt(freq);
-
-            if (freq > 0 && freq < 5)
+            if (freq >= 1 && freq <= 4)
             {
                 freq = freq * (5 - freq);
             }
@@ -24,15 +22,12 @@ namespace EduQuiz_Question_Answering_System
 
         public override float Idf(int docFreq, int numDocs)
         {
-            // return (float) (System.Math.Log(numDocs / (double) (docFreq + 1)) + 1.0);
-
             double docFreqTemp = docFreq;
 
-            if (docFreq > 0 && docFreq < 5)
+            if (docFreq >= 1 && docFreq <= 9)
             {
-                docFreqTemp = (double)docFreq / (double)(5 - docFreq);
+                docFreqTemp = (double)docFreq / (double)(10 - docFreq);
             }
-
             return (float)(System.Math.Log(numDocs / (double)(docFreqTemp + 1)) + 1.0);
         }
     }

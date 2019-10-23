@@ -75,7 +75,7 @@ namespace EduQuiz_Question_Answering_System
             myLuceneApp = new LuceneInteractive(jsonFilePath, indexPath);
             DateTime endIndex = System.DateTime.Now;
 
-            string indexTime = "Index Time:" + (endIndex - startIndex);
+            string indexTime = "Index Time: " + (endIndex - startIndex).TotalSeconds + " seconds";
             lbl_IndexTime.Text = indexTime;
 
 

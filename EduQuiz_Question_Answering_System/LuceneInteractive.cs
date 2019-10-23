@@ -105,21 +105,18 @@ namespace EduQuiz_Question_Answering_System
             // Separate fields for passage_text, title. Each field has its own boost. (passage_text.boost=2,title.boost=5)
             Lucene.Net.Documents.Field text_field = new Field(TEXT_FN, passage_text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
             Lucene.Net.Documents.Field title_field = new Field(TITLE_FN, title, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
-            // Lucene.Net.Documents.Field query_field = new Field(QUERY_FN, query, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
-            Lucene.Net.Documents.Field passage_ID_field = new Field(ID_FN_PASSAGEID, passage_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
-            Lucene.Net.Documents.Field query_ID_field = new Field(ID_FN_QUERYID, query_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
-
+            
             //add boost
             text_field.Boost = 2;
             title_field.Boost = 5;
-            // query_field.Boost = 8;
 
 
+            Lucene.Net.Documents.Field passage_ID_field = new Field(ID_FN_PASSAGEID, passage_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
+            Lucene.Net.Documents.Field query_ID_field = new Field(ID_FN_QUERYID, query_ID, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO);
 
             Lucene.Net.Documents.Document doc = new Document();
             doc.Add(text_field);
             doc.Add(title_field);
-            // doc.Add(query_field);
             doc.Add(passage_ID_field);
             doc.Add(query_ID_field);
 
@@ -233,7 +230,7 @@ namespace EduQuiz_Question_Answering_System
             string query = searchQuery;
 
             CreateSearcher();
-            StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default);//实例化StreamWriter
+            StreamWriter sw = new StreamWriter(filePath, true, Encoding.Default);//instantiate StreamWriter
             TopDocs results = searchResultDocs;
             // TopDocs results = SearchText(query, searcher.MaxDoc);
             saveQuery.Add(query);

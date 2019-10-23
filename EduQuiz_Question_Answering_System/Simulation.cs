@@ -14,7 +14,7 @@ namespace EduQuiz_Question_Answering_System
         //important! modify the following paths to your local path
         const string jsonFilePath = @"Z:\Desktop\QUT\IFN647\Project\collection.json";
         const string indexPath = @"C:\Users\CaptainXun\Desktop\QUT\IndexFolder";
-        const string resultPath = @"C:\Users\CaptainXun\Desktop\QUT\Evaluation\Baseline_Results.txt";
+        const string resultPath = @"C:\Users\CaptainXun\Desktop\QUT\Evaluation\Custom_Results.txt";
         const string qrels_RetrieveListOfPassages_path = @"C:\Users\CaptainXun\Desktop\QUT\Evaluation\qrels_RetrieveListOfPassages.txt";
         const string qrels_RetrieveSelectedPassages_path = @"C:\Users\CaptainXun\Desktop\QUT\Evaluation\qrels_RetrieveSelectedPassages.txt";
 
@@ -59,16 +59,11 @@ namespace EduQuiz_Question_Answering_System
         public void CreateQrels_RetrieveListOfPassages()
         {
             StreamWriter sw = new StreamWriter(qrels_RetrieveListOfPassages_path, true, Encoding.Default);
-
             int itemNum = 0;
-
             foreach (Item item in collection)
             {
                 itemNum++;
-                if (itemNum > ITEM_NUM)
-                {
-                    break;
-                }
+                if (itemNum > ITEM_NUM) { break; }
 
                 string query_id = item.query_id.ToString();
                 foreach (Passage passage in item.Passages)
@@ -83,20 +78,14 @@ namespace EduQuiz_Question_Answering_System
         public void CreateQrels_RetrieveSelectedPassage()
         {
             StreamWriter sw = new StreamWriter(qrels_RetrieveSelectedPassages_path, true, Encoding.Default);
-
             int itemNum = 0;
-
             foreach (Item item in collection)
             {
                 string query_id = item.query_id.ToString();
                 foreach (Passage passage in item.Passages)
                 {
-
                     itemNum++;
-                    if (itemNum > ITEM_NUM)
-                    {
-                        break;
-                    }
+                    if (itemNum > ITEM_NUM){break;}
                     
                     if (passage.is_selected == 1)
                     {
